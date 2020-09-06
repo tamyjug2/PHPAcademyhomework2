@@ -1,21 +1,24 @@
 <?php
 
-$file_name = $_FILES['image']['name'];
-$file_size = $_FILES['image']['size'];
-$file_tmp = $_FILES['image']['tmp_name'];
-$file_type = $_FILES['image']['type'];
-$array = explode('.', $_FILES['image']['name']);
+$file_name = $_FILES['pic']['name'];
+$file_size = $_FILES['pic']['size'];
+$file_tmp = $_FILES['pic']['tmp_name'];
+$file_type = $_FILES['pic']['type'];
+$array = explode('.', $_FILES['pic']['name']);
 $file_ext = strtolower(end($array));
 $errors = array();
 $extensions = array("jpeg", "jpg", "png");
 
-if (isset($_FILES['image'])) {
+if (isset($_FILES['pic']))
+{
 
-    if (in_array($file_ext, $extensions) === false) {
-        echo "Extension not allowed, please choose a JPEG or PNG file.";
+    if (in_array($file_ext, $extensions) === false)
+    {
+        echo "Wanted file is not allowed, please choose a JPEG or PNG file.";
     }
-    if ($file_size > 1000000) {
-        echo "File size must be less then 1 MB";
+    if ($file_size > 1000000)
+    {
+        echo "choose a file less then 1 MB";
     }
     if (empty($errors) == true) {
         move_uploaded_file($file_tmp, "Pictures/" . $file_name);
@@ -25,7 +28,7 @@ if (isset($_FILES['image'])) {
     }
 }
 ?>
-<html>
+<html lang="'en">
 <body>
 <form action="" method="POST" enctype="multipart/form-data">
     <input type="file" name="image"/>
